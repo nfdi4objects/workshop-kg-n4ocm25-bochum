@@ -63,3 +63,28 @@ FROM <https://graph.nfdi4objects.net/collection/8> WHERE {
 } ORDER BY ?item
 LIMIT 1000
 ```
+
+## subquery for doscovery sites
+
+```sparql
+PREFIX geosparql: <http://www.opengis.net/ont/geosparql#>
+PREFIX dc: <http://purl.org/dc/elements/1.1/>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX lado: <http://archaeology.link/ontology#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX amt: <http://academic-meta-tool.xyz/vocab#>
+PREFIX samian: <http://data.archaeology.link/data/samian/>
+
+SELECT ?item ?genericpotformLabel ?discoverysiteLabel ?geo
+FROM <https://graph.nfdi4objects.net/collection/8> WHERE {
+  ?item rdf:type lado:InformationCarrier.
+  ?item lado:representedBy ?potformID.
+  ?potformID lado:generalisedAs ?genericpotformID.
+  ?genericpotformID rdfs:label ?genericpotformLabel.
+  ?item lado:disclosedAt ?discoverysiteID.
+  ?discoverysiteID rdfs:label ?discoverysiteLabel.
+  ?discoverysiteID geosparql:hasGeometry ?discoverysiteGeometry.
+  ?discoverysiteGeometry geosparql:asWKT ?geo.
+} ORDER BY ?item
+LIMIT 1000
+```
