@@ -89,7 +89,7 @@ FROM <https://graph.nfdi4objects.net/collection/8> WHERE {
 LIMIT 1000
 ```
 
-## subquery: number of sherds by generic potform found in X
+## subquery: number of sherds by generic potform found in X, via [https://graph.nfdi4objects.net/api/sparql](https://graph.nfdi4objects.net/api/sparql)
 
 ```sparql
 PREFIX geosparql: <http://www.opengis.net/ont/geosparql#>
@@ -114,7 +114,7 @@ FROM <https://graph.nfdi4objects.net/collection/8> WHERE {
 LIMIT 10000
 ```
 
-## subquery: number of sherds by generic potform produced in X (with AMT weight)
+## subquery: number of sherds by generic potform produced in X (with AMT weight), via [https://graph.nfdi4objects.net/api/sparql](https://graph.nfdi4objects.net/api/sparql)
 
 ```sparql
 PREFIX geosparql: <http://www.opengis.net/ont/geosparql#>
@@ -143,7 +143,7 @@ FROM <https://graph.nfdi4objects.net/collection/8> WHERE {
 LIMIT 1000
 ```
 
-## subquery: number of sherds by generic potform produced in X as weighted count
+## subquery: number of sherds by generic potform produced in X as weighted count, via [https://graph.nfdi4objects.net/api/sparql](https://graph.nfdi4objects.net/api/sparql)
 
 ```sparql
 PREFIX geosparql: <http://www.opengis.net/ont/geosparql#>
@@ -184,4 +184,36 @@ WHERE {
 GROUP BY ?genericpotformLabel ?item ?geo
 ORDER BY ?item DESC(?count)
 LIMIT 1000
+```
+
+## Ogham Sites from N4O KG, via [https://graph.nfdi4objects.net/api/sparql](https://graph.nfdi4objects.net/api/sparql)
+
+```sparql
+PREFIX oghamonto: <http://ontology.ogham.link/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+SELECT ?item ?label ?geo ?county (count(distinct ?stone) as ?count) WHERE {
+ ?item <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://ontology.ogham.link/OghamSite> .
+ ?item rdfs:label ?label .
+ ?item <http://www.opengis.net/ont/geosparql#hasGeometry> ?item_geom .
+ ?item_geom <http://www.opengis.net/ont/geosparql#asWKT> ?geo . 
+ ?item oghamonto:within ?c .
+ ?c a oghamonto:County .
+ ?c rdfs:label ?county .
+ ?stone oghamonto:disclosedAt ?item .
+ ?stone a oghamonto:OghamStone_CIIC .
+} GROUP BY ?item ?label ?geo ?county ORDER BY DESC(?count)
+```
+
+## Wikidata Sites by County via [query.wikidata.org](https://query.wikidata.org/sparql)
+
+```sparql
+SELECT ?item ?itemLabel ?geo ?site ?siteLabel ?county ?countyLabel WHERE { 
+  ?item wdt:P31 wd:Q2016147.
+  ?item wdt:P189 ?site.
+  ?site wdt:P31 wd:Q72617071.
+  ?item wdt:P189 ?county.
+  ?county wdt:P31 wd:Q179872.
+  ?item wdt:P625 ?geo.
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
+}
 ```
