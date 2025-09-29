@@ -116,6 +116,7 @@ LIMIT 10000
 
 ## subquery: number of sherds by generic potform produced in X
 
+```sparql
 PREFIX geosparql: <http://www.opengis.net/ont/geosparql#>
 PREFIX dc: <http://purl.org/dc/elements/1.1/>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
@@ -140,3 +141,4 @@ FROM <https://graph.nfdi4objects.net/collection/8> WHERE {
   
 } GROUP BY ?genericpotformLabel ?item ?geo ?kilnsiteDOC ORDER BY ?item DESC(?count)
 LIMIT 1000
+```
