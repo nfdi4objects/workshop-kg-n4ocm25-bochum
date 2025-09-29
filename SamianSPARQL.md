@@ -1,5 +1,7 @@
 # N4O KG SPARQL Queries
 
+## general query for potforms, discovery site, kiln site and kiln region
+
 ```sparql
 PREFIX geosparql: <http://www.opengis.net/ont/geosparql#>
 PREFIX dc: <http://purl.org/dc/elements/1.1/>
@@ -31,6 +33,8 @@ FROM <https://graph.nfdi4objects.net/collection/8> WHERE {
 } ORDER BY ?findID
 LIMIT 100
 ```
+
+## subquery for kilns
 
 ```sparql
 PREFIX geosparql: <http://www.opengis.net/ont/geosparql#>
