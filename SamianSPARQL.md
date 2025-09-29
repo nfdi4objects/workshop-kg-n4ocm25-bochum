@@ -41,7 +41,7 @@ PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX amt: <http://academic-meta-tool.xyz/vocab#>
 PREFIX samian: <http://data.archaeology.link/data/samian/>
 
-SELECT ?item ?genericpotformLabel ?kilnsiteLabel ?geom ?kilnsiteDOC ?kilnregionLabel
+SELECT ?item ?genericpotformLabel ?kilnsiteLabel ?geo ?kilnsiteDOC ?kilnregionLabel
 FROM <https://graph.nfdi4objects.net/collection/8> WHERE {
   ?item rdf:type lado:InformationCarrier.
   ?item lado:representedBy ?potformID.
