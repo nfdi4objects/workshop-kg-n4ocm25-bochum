@@ -1,6 +1,6 @@
-# N4O KG SPARQL Queries
+# KG SPARQL Queries
 
-## general query for potforms, discovery site, kiln site and kiln region
+## general query for potforms, discovery site, kiln site and kiln region, via [graph.nfdi4objects.net/api/sparql](https://graph.nfdi4objects.net/api/sparql)
 
 ```sparql
 PREFIX geosparql: <http://www.opengis.net/ont/geosparql#>
@@ -34,7 +34,7 @@ FROM <https://graph.nfdi4objects.net/collection/8> WHERE {
 LIMIT 100
 ```
 
-## subquery for kilns
+## subquery for kilns, via [graph.nfdi4objects.net/api/sparql](https://graph.nfdi4objects.net/api/sparql)
 
 ```sparql
 PREFIX geosparql: <http://www.opengis.net/ont/geosparql#>
@@ -64,7 +64,7 @@ FROM <https://graph.nfdi4objects.net/collection/8> WHERE {
 LIMIT 1000
 ```
 
-## subquery for discovery sites
+## subquery for discovery sites, via [graph.nfdi4objects.net/api/sparql](https://graph.nfdi4objects.net/api/sparql)
 
 ```sparql
 PREFIX geosparql: <http://www.opengis.net/ont/geosparql#>
@@ -89,7 +89,7 @@ FROM <https://graph.nfdi4objects.net/collection/8> WHERE {
 LIMIT 1000
 ```
 
-## subquery: number of sherds by generic potform found in X, via [https://graph.nfdi4objects.net/api/sparql](https://graph.nfdi4objects.net/api/sparql)
+## subquery: number of sherds by generic potform found in X, via [graph.nfdi4objects.net/api/sparql](https://graph.nfdi4objects.net/api/sparql)
 
 ```sparql
 PREFIX geosparql: <http://www.opengis.net/ont/geosparql#>
@@ -114,7 +114,7 @@ FROM <https://graph.nfdi4objects.net/collection/8> WHERE {
 LIMIT 10000
 ```
 
-## subquery: number of sherds by generic potform produced in X (with AMT weight), via [https://graph.nfdi4objects.net/api/sparql](https://graph.nfdi4objects.net/api/sparql)
+## subquery: number of sherds by generic potform produced in X (with AMT weight), via [graph.nfdi4objects.net/api/sparql](https://graph.nfdi4objects.net/api/sparql)
 
 ```sparql
 PREFIX geosparql: <http://www.opengis.net/ont/geosparql#>
@@ -143,7 +143,7 @@ FROM <https://graph.nfdi4objects.net/collection/8> WHERE {
 LIMIT 1000
 ```
 
-## subquery: number of sherds by generic potform produced in X as weighted count, via [https://graph.nfdi4objects.net/api/sparql](https://graph.nfdi4objects.net/api/sparql)
+## subquery: number of sherds by generic potform produced in X as weighted count, via [graph.nfdi4objects.net/api/sparql](https://graph.nfdi4objects.net/api/sparql)
 
 ```sparql
 PREFIX geosparql: <http://www.opengis.net/ont/geosparql#>
@@ -186,7 +186,7 @@ ORDER BY ?item DESC(?count)
 LIMIT 1000
 ```
 
-## Ogham Sites from N4O KG, via [https://graph.nfdi4objects.net/api/sparql](https://graph.nfdi4objects.net/api/sparql)
+## Ogham Sites from N4O KG, via [graph.nfdi4objects.net/api/sparql](https://graph.nfdi4objects.net/api/sparql)
 
 ```sparql
 PREFIX oghamonto: <http://ontology.ogham.link/>
