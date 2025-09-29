@@ -88,3 +88,28 @@ FROM <https://graph.nfdi4objects.net/collection/8> WHERE {
 } ORDER BY ?item
 LIMIT 1000
 ```
+
+## subquery: number of sherds by generic potform found in X
+
+```sparql
+PREFIX geosparql: <http://www.opengis.net/ont/geosparql#>
+PREFIX dc: <http://purl.org/dc/elements/1.1/>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX lado: <http://archaeology.link/ontology#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX amt: <http://academic-meta-tool.xyz/vocab#>
+PREFIX samian: <http://data.archaeology.link/data/samian/>
+
+SELECT ?genericpotformLabel ?item ?geo (count(distinct ?findID) as ?count)
+FROM <https://graph.nfdi4objects.net/collection/8> WHERE {
+  ?findID rdf:type lado:InformationCarrier.
+  ?findID lado:representedBy ?potformID.
+  ?potformID lado:generalisedAs ?genericpotformID.
+  ?genericpotformID rdfs:label ?genericpotformLabel.
+  ?findID lado:disclosedAt ?discoverysiteID.
+  ?discoverysiteID rdfs:label ?item.
+  ?discoverysiteID geosparql:hasGeometry ?discoverysiteGeometry.
+  ?discoverysiteGeometry geosparql:asWKT ?geo.
+} GROUP BY ?genericpotformLabel ?item ?geo ORDER BY ?item DESC(?count)
+LIMIT 10000
+```
