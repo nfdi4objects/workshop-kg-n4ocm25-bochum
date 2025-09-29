@@ -64,7 +64,7 @@ FROM <https://graph.nfdi4objects.net/collection/8> WHERE {
 LIMIT 1000
 ```
 
-## subquery for doscovery sites
+## subquery for discovery sites
 
 ```sparql
 PREFIX geosparql: <http://www.opengis.net/ont/geosparql#>
