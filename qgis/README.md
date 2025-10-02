@@ -204,15 +204,15 @@ SELECT ?item ?label ?geo ?county (count(distinct ?stone) as ?count) WHERE {
 } GROUP BY ?item ?label ?geo ?county ORDER BY DESC(?count)
 ```
 
-## Wikidata Sites by County via [query.wikidata.org](https://query.wikidata.org/sparql)
+## Ogham CISP Wikidata Sites by County via [query.wikidata.org](https://query.wikidata.org/sparql)
 
 ```sparql
 SELECT ?item ?itemLabel ?geo ?site ?siteLabel ?county ?countyLabel WHERE { 
   ?item wdt:P31 wd:Q2016147.
+  ?item wdt:P31 wd:Q106602627.
   ?item wdt:P189 ?site.
   ?site wdt:P31 wd:Q72617071.
   ?item wdt:P189 ?county.
-  ?county wdt:P31 wd:Q179872.
   ?item wdt:P625 ?geo.
   SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
 }
